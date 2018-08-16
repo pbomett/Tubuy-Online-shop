@@ -1,0 +1,69 @@
+<div class="container">
+  <div class="toolbar">
+  <mat-toolbar>
+   <mat-toolbar-row>
+      <i class="material-icons" [matMenuTriggerFor]="mainmenu">menu</i>
+        <mat-menu #mainmenu="matMenu" class="mainmenu">
+          <button mat-menu-item [matMenuTriggerFor]="electronics"><i class="fas fa-mobile-alt"></i>Electronics</button>
+          <button mat-menu-item [matMenuTriggerFor]="clothing"><i class="fas fa-tshirt"></i>Clothing</button>
+          <button mat-menu-item>Shoes</button>
+        </mat-menu>
+
+        <mat-menu #electronics="matMenu">
+            <button mat-menu-item [matMenuTriggerFor]="fish">Fishes</button>
+            <button mat-menu-item [matMenuTriggerFor]="amphibians">Amphibians</button>
+            <button mat-menu-item [matMenuTriggerFor]="reptiles">Reptiles</button>
+            <button mat-menu-item>Birds</button>
+            <button mat-menu-item>Mammals</button>
+          </mat-menu>
+          
+          <mat-menu #clothing="matMenu">
+            <button mat-menu-item>Insects</button>
+            <button mat-menu-item>Molluscs</button>
+            <button mat-menu-item>Crustaceans</button>
+            <button mat-menu-item>Corals</button>
+            <button mat-menu-item>Arachnids</button>
+            <button mat-menu-item>Velvet worms</button>
+            <button mat-menu-item>Horseshoe crabs</button>
+          </mat-menu>
+          
+          <mat-menu #fish="matMenu">
+            <button mat-menu-item>Baikal oilfish</button>
+            <button mat-menu-item>Bala shark</button>
+            <button mat-menu-item>Ballan wrasse</button>
+            <button mat-menu-item>Bamboo shark</button>
+            <button mat-menu-item>Banded killifish</button>
+          </mat-menu>
+          
+          <mat-menu #amphibians="matMenu">
+            <button mat-menu-item>Sonoran desert toad</button>
+            <button mat-menu-item>Western toad</button>
+            <button mat-menu-item>Arroyo toad</button>
+            <button mat-menu-item>Yosemite toad</button>
+          </mat-menu>
+          
+          <mat-menu #reptiles="matMenu">
+            <button mat-menu-item>Banded Day Gecko</button>
+            <button mat-menu-item>Banded Gila Monster</button>
+            <button mat-menu-item>Black Tree Monitor</button>
+            <button mat-menu-item>Blue Spiny Lizard</button>
+            <button mat-menu-item disabled>Velociraptor</button>
+          </mat-menu>
+
+
+        <span class = "logo" routerLink="">2buy</span>
+        <span class="example-spacer"></span>
+        <input class="search-input">
+      <div>
+        <a mat-button class="search-button">Search</a>
+      </div>
+      <div class="button-row">
+        <a mat-button routerLink="/list">Login</a>
+      </div>
+      <div class="button-row">
+        <a mat-button routerLink="/login">Cart</a>
+      </div>
+    </mat-toolbar-row>
+  </mat-toolbar>
+  </div>
+</div>

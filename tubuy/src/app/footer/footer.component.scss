@@ -1,0 +1,54 @@
+#container{
+    background-color: rgb(7, 66, 82);
+    color: #fff;
+    margin: 0px;
+    height: 200px;
+    font-family: "Raleway";
+    font-size: 12px;
+    padding: 50px;
+    display: grid;
+    grid-template-columns: 50% auto;
+    grid-template-rows: 80% auto;
+    grid-template-areas: 
+      "about social"
+      "copyright copyright"
+  }
+
+  .about-us{
+    grid-area: about;
+    line-height: 1.5em;
+    font-size: 1.2em;
+    justify-self: center;
+    ul{
+      list-style-type: none;
+    }
+  }
+
+  .social{
+    grid-area: social;
+    justify-self: center;
+  }
+
+  .copyright{
+    grid-area: copyright;
+    justify-self: flex-start;
+    margin-left: 20%;
+    font-size: 1.2em;
+  }
+
+  p{
+    font-size: 14px;
+    color: rgb(235, 208, 178);
+    font-weight: bold;
+  }
+
+  a{
+    color: #fff;
+    text-decoration: none;
+  }
+
+  i{
+    font-size: 3em;
+    margin: 10px;
+    cursor: pointer;
+  }

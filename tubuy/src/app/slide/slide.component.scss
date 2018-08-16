@@ -1,0 +1,33 @@
+#slide{
+    display: table;
+    background-position:center top;
+    background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url("../../assets/slide.jpg");
+    background-size: auto;
+    background-repeat: no-repeat;
+    width: 100%;
+    color: #fff;
+    margin: 0px;
+    font-family: "Merriweather";
+    align-content: flex-start;
+  }
+
+  #slide-text{
+    padding-top: 10rem;
+    padding-bottom: 5rem;
+    padding-left: 2rem;
+  }
+  
+  h1{
+    margin-left: 30px;
+    margin-top: 0px;
+    font-size: 4em;
+    line-height: 0.8;
+  } 
+
+  p{
+    font-size: 1.5em;
+    font-family: "Raleway";
+    margin-left: 30px;
+    margin-top: 0px;
+  }
+

@@ -1,0 +1,59 @@
+.container{
+  margin: 0;
+}
+
+.mat-toolbar{
+  background-color: #1f5e8b;
+  color: #fff;
+  position: fixed;
+  width: 100%;
+  z-index: 1;
+}
+
+.logo {
+    padding: 10px;
+    font-family: 'Merriweather';
+    font-size: 30px;
+    font-weight: bold;
+    cursor: pointer;
+    border: none;
+  }
+
+  .logo:visited, .logo:active{
+    border: none;
+  }
+  
+  .example-spacer {
+    flex: 1 1 auto;
+  }
+
+  i{
+    cursor: pointer;
+    padding: 10px;
+  }
+
+  .button-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+  }
+  
+  .button-row button,
+  .button-row a {
+    margin-right: 8px;
+  }
+  
+  .search-input {
+    padding: 10px;
+    margin: 5px;
+    width: 30%;
+  }
+  .search-button {
+    background-color: #fff;
+    color: blue;
+    border-radius: 6px;
+    padding: 0;
+    margin: 5px;
+  }
+
+  

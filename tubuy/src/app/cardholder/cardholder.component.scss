@@ -1,0 +1,48 @@
+body{
+  margin-left: 80px;
+  margin-right: 80px;
+  font-family: "Raleway";
+}
+section h1{
+  margin: 15px, auto;
+}
+
+.example-card {
+    width: 200px;
+    margin: 20px;
+  }
+  
+  .example-header-image {
+    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+    background-size: cover;
+  }
+
+  ul{
+    list-style-type: none;
+
+
+  }
+
+  button{
+      background-color: #682b2b;
+      color: #fff;
+  }
+
+  li:nth-child(1){
+    font-weight: bold;
+    font-size: 1.2em;
+    padding-Bottom: 8px;
+  }
+
+  li:nth-child(2){
+    padding-Bottom: 8px;
+    color: grey;
+  }
+
+  .bdimg{
+    padding: 100px;
+  }
+
+  a{
+    text-decoration: none;
+  }
