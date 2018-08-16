@@ -24,4 +24,9 @@ export class CardholderComponent implements OnInit {
   fetchItems(){
     this.dataService.getItems().subscribe((data: ItemModel[]) => {
       this.items = data;
-      // console
+      // console.log('Data requested...');
+      // console.log(this.items);
+    });
+  }
+
+}
