@@ -1,46 +1,52 @@
-var mongoose = require('mongoose');
-var bcrypt = require('bcrypt-nodejs');
+var mongoose = require( 'mongoose' );
+var crypto = require('crypto');
+var jwt = require('jsonwebtoken');
 
-// User Schema
-var UserSchema = mongoose.Schema({
-	username: {
+var userSchema = mongoose.Schema({
+    email: {
+      type: String,
+      unique: true,
+      required: true
+    },
+    username: {
+	  type: String,
+	  unique: true,
+      required: true
+	},
+	phone: {
 		type: String,
-		index:true
-	},
+		unique: true,
+		required: true
+	  },
 	password: {
-		type: String
-	},
-	email: {
-		type: String
-	},
-	name: {
-		type: String
-	}
-});
+		type: String,
+		required: true
+	  },
+    hash: String,
+    salt: String
+  });
 
-var User = module.exports = mongoose.model('User', UserSchema);
+  userSchema.methods.setPassword = function(password){
+    this.salt = crypto.randomBytes(16).toString('hex');
+    this.hash = crypto.pbkdf2Sync(password, this.salt, 1000, 64, 'sha512').toString('hex');
+  };
 
-module.exports.createUser = function(newUser, callback){
-	bcrypt.genSalt(10, function(err, salt) {
-	    bcrypt.hash(newUser.password, salt, function(err, hash) {
-	        newUser.password = hash;
-	        newUser.save(callback);
-	    });
-	});
-}
+  userSchema.methods.validPassword = function(password) {
+    var hash = crypto.pbkdf2Sync(password, this.salt, 1000, 64, 'sha512').toString('hex');
+    return this.hash === hash;
+  };
 
-module.exports.getUserByUsername = function(username, callback){
-	var query = {username: username};
-	User.findOne(query, callback);
-}
+  userSchema.methods.generateJwt = function() {
+	var expiry = new Date();
+	expiry.setDate(expiry.getDate() + 7);
+  
+	return jwt.sign({
+	  _id: this._id,
+	  email: this.email,
+	  username: this.username,
+	  exp: parseInt(expiry.getTime() / 1000),
+	}, "MY_SECRET"); // DO NOT KEEP YOUR SECRET IN THE CODE!
+  };
 
-module.exports.getUserById = function(id, callback){
-	User.findById(id, callback);
-}
 
-module.exports.comparePassword = function(candidatePassword, hash, callback){
-	bcrypt.compare(candidatePassword, hash, function(err, isMatch) {
-    	if(err) throw err;
-    	callback(null, isMatch);
-	});
-}
+  mongoose.model('User', userSchema);
