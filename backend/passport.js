@@ -72,8 +72,8 @@ module.exports = function(passport) {
                     return done(null, newUser);
                 });
 
-                //sucess message
-                req.flash('sucess_msg', 'You are registered and can now log in');
+                // //sucess message
+                // req.flash('sucess_msg', 'You are registered and can now log in');
             }
 
         });    

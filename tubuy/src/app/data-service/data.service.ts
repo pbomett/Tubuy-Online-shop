@@ -57,14 +57,26 @@ export class DataService {
     return(this.http.get(`${this.uri}/issues/delete/${id}`));
   }
 
-  signup(value){
+  signup(username, email, password, passwordConf){
+    const userdata = {
+      username: username,
+      email: email,
+      password: password,
+      passwordConf: passwordConf
+    }
 
-
-    return(this.http.post(`${this.uri}/signup`, value));
+    return(this.http.post(`${this.uri}/signup`, userdata));
   }
 
-  signin(values){
-    return(this.http.post(`${this.uri}/signup`, values));
+  signin(username, password){
+    const userdata = {
+      username: username,
+      password: password
+    }
+
+    console.log(userdata);
+
+    return(this.http.post(`${this.uri}/signup`, userdata));
   }
   
 }

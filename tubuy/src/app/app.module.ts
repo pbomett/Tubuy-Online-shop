@@ -21,12 +21,15 @@ import { FooterComponent } from './footer/footer.component';
 import { CardholderComponent } from './cardholder/cardholder.component';
 
 import { DataService } from './data-service/data.service';
+import { AuthenticationService } from './authenitcation-service/authentication.service';
+import { AuthguardService } from './auth-guard/authguard.service';
 import { ListComponent } from './list/list.component';
 import { CreateissueComponent } from './createissue/createissue.component';
 import { EditissueComponent } from './editissue/editissue.component';
 import { SlideComponent } from './slide/slide.component';
 import { SignupComponent } from './signup/signup.component';
 import { LoginComponent } from './login/login.component';
+import { ProfileComponent } from './profile/profile.component';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyC9CJuvmatRf3h3mJBc1X-YA7wIuVuHEeI",
@@ -50,7 +53,8 @@ export const firebaseConfig = {
     EditissueComponent,
     SlideComponent,
     SignupComponent,
-    LoginComponent
+    LoginComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -66,7 +70,7 @@ export const firebaseConfig = {
     HttpClientModule,
     FormsModule
   ],
-  providers: [DataService],
+  providers: [DataService, AuthenticationService, AuthguardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

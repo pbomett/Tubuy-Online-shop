@@ -1,4 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { DataService } from '../data-service/data.service';
+import { UserModel } from '../user.model';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { AuthenticationService, TokenPayload } from '../authenitcation-service/authentication.service';
+
 
 @Component({
   selector: 'app-signup',
@@ -7,9 +13,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SignupComponent implements OnInit {
 
-  constructor() { }
+  credentials: TokenPayload = {
+    email: '',
+    name: '',
+    password: ''
+  };
 
+  constructor(private auth: AuthenticationService, private router: Router) {
+
+   }
+  
   ngOnInit() {
   }
 
+  response: any;
+
+  onRegister() {
+    this.auth.register(this.credentials).subscribe(() => {
+      this.router.navigateByUrl('/profile');
+    }, (err) => {
+      console.error(err);
+    });
+  }
 }

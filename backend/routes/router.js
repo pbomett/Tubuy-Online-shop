@@ -5,30 +5,21 @@ var LocalStrategy = require('passport-local').Strategy;
 var User = require('../models/user');
 
 import Item from '../models/item';
-import Issue from '../models/item';
+import Issue from '../models/issue';
 
 
 // Register User
-router.post('/register', function (req, res) {
+router.post('/signup', function (req, res) {
 		// Validation
-		if(!req.body.name){res.json('Name is required'); res.redirect('/register')};
-		if(!req.body.email){res.json('Name is required'); res.redirect('/register')};
-		if(!req.body.username){res.json('Username is required'); res.redirect('/register')};
-		if(!req.body.password){res.json('Password is required'); res.redirect('/register')};
-		if(!req.body.passwordConf){res.json('Password confiration is required'); res.redirect('/register')};
+
 	
-	
-	var name = req.body.name;
-	var email = req.body.email;
 	var username = req.body.username;
+	var email = req.body.email;
 	var password = req.body.password;
 	var password2 = req.body.passwordConf;
 
-	if (errors) {
-		res.redirect('/register');
-		res.json(errors);
-	}
-	else {
+
+	
 		//checking for email and username are already taken
 		User.findOne({ username: { 
 			"$regex": "^" + username + "\\b", "$options": "i"
@@ -37,14 +28,11 @@ router.post('/register', function (req, res) {
 				"$regex": "^" + email + "\\b", "$options": "i"
 		}}, function (err, mail) {
 				if (user || mail) {
-					res.render('register', {
-						user: user,
-						mail: mail
-					});
+					res.json("User already exists!");
 				}
 				else {
 					var newUser = new User({
-						name: name,
+						//name: name,
 						email: email,
 						username: username,
 						password: password
@@ -53,12 +41,12 @@ router.post('/register', function (req, res) {
 						if (err) throw err;
 						console.log(user);
 					});
-         	req.flash('success_msg', 'You are registered and can now login');
-					res.redirect('/users/login');
+         	res.json("You are registered and can now login");
+					res.redirect('/login');
 				}
 			});
 		});
-	}
+	
 });
 
 passport.use(new LocalStrategy(

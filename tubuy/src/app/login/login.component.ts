@@ -1,30 +1,25 @@
-import { Component, OnInit } from '@angular/core';
-import { DataService } from '../data-service/data.service';
-import { UserModel } from '../user.model';
-
+import { Component } from '@angular/core';
+import { AuthenticationService, TokenPayload } from '../authenitcation-service/authentication.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
+  credentials: TokenPayload = {
+    email: '',
+    password: ''
+  };
 
-  userinfo: UserModel[];
+  constructor(private auth: AuthenticationService, private router: Router) {}
 
-  constructor(private dataService: DataService) { }
-  
-  ngOnInit() {
-  }
-
-  response: any;
-
-  onRegister(values: any){
-      console.log(values);
-      this.dataService.signin(values).subscribe((data) => {
-        this.response = data;
-        console.log("Logged In!");
-        console.log(this.response);
-      });
+  onLogin() {
+    this.auth.login(this.credentials).subscribe(() => {
+      this.router.navigateByUrl('/profile');
+    }, (err) => {
+      console.error(err);
+    }); 
   }
 }

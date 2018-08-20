@@ -57,12 +57,12 @@
       <div>
         <a mat-button class="search-button">Search</a>
       </div>
-      <div class="button-row">
-        <a mat-button routerLink="/list">Login</a>
-      </div>
-      <div class="button-row">
-        <a mat-button routerLink="/login">Cart</a>
-      </div>
+      <ul class="nav navbar-nav navbar-right">
+        <li *ngIf="!auth.isLoggedIn()"><a class= "header-link" routerLink="/login">Sign in</a></li>
+        <li *ngIf="auth.isLoggedIn()"><a class= "header-link" routerLink="/profile">{{ auth.getUserDetails()?.name }}</a></li>
+        <li *ngIf="auth.isLoggedIn()"><a class= "header-link" (click)="auth.logout()">Logout</a></li>
+      </ul>
+      <a class= "header-link" routerLink=".">Cart</a>
     </mat-toolbar-row>
   </mat-toolbar>
   </div>
