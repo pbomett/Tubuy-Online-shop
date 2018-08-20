@@ -42,12 +42,10 @@ app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 app.use(flash()); // use connect-flash for flash messages stored in session
 
-// catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  var err = new Error('Not Found');
-  err.status = 404;
-  next(err);
-});
+
+
+  // include routes
+  //require('./routes/router')(app, passport); // load our routes and pass in our app and fully configured passport
 
   var routes = require('./routes/router');
   app.use('/', routes);
