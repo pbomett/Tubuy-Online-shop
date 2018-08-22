@@ -4,22 +4,52 @@ var User = mongoose.model('User');
 //var User = require('../models/user');
 
 module.exports.register = function(req, res) {
-      var user = new User();
+         
+      var username = req.body.username;
+	    var email = req.body.email;
+	    var phone = req.body.phone;
+
+      		//checking for email and username are already taken
+		User.findOne({ username: { 
+			"$regex": "^" + username + "\\b", "$options": "i"
+	}}, function (err, user) {
+			User.findOne({ email: { 
+				"$regex": "^" + email + "\\b", "$options": "i"
+		}}, function (err, mail) {
+				if (user || mail) {
+					res.json("User already exists!");
+				}
+				else {
+
+          var newUser = new User({
+						email: email,
+						username: username,
+						phone: phone
+          });
+          
+          newUser.setPassword(req.body.password);
+
+         // newUser.password = newUser.hash;
     
-      user.username = req.body.username;
-      user.email = req.body.email;
-      user.phone = req.body.phone;
-    
-      user.setPassword(req.body.password);
-    
-      user.save(function(err) {
-        var token;
-        token = user.generateJwt();
-        res.status(200);
-        res.json({
-          "token" : token
-        });
-      });
+          //generating token
+          newUser.save(function(err) {
+              //newUser.save();
+              if (err) {
+                res.json(err);
+              }
+              var token;
+              token = user.generateJwt();
+              res.status(200);
+              res.json({
+                "token" : token
+              });
+
+              res.json("You are registered and can now login");
+            });
+				}
+			});
+		});
+
     };
 
     
