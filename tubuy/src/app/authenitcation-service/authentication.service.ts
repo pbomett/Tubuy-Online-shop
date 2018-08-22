@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
 export interface UserDetails {
   _id: string;
   email: string;
-  name: string;
+  username: string;
   exp: number;
   iat: number;
 }
@@ -19,12 +19,14 @@ interface TokenResponse {
 export interface TokenPayload {
   email: string;
   password: string;
-  name?: string;
+  username?: string;
+  phone?: string;
 }
 
 @Injectable()
 export class AuthenticationService {
   private token: string;
+  uri = 'http://localhost:4000/';
 
   constructor(private http: HttpClient, private router: Router) {}
 
@@ -61,13 +63,13 @@ export class AuthenticationService {
     }
   }
 
-  private request(method: 'post'|'get', type: 'login'|'register'|'profile', user?: TokenPayload): Observable<any> {
+  private request(method: 'post'|'get', type: 'signin'|'signup'|'profile', user?: TokenPayload): Observable<any> {
     let base;
 
     if (method === 'post') {
-      base = this.http.post(`/api/${type}`, user);
+      base = this.http.post(`${this.uri}${type}`, user);
     } else {
-      base = this.http.get(`/api/${type}`, { headers: { Authorization: `Bearer ${this.getToken()}` }});
+      base = this.http.get(`${this.uri}${type}`, { headers: { Authorization: `Bearer ${this.getToken()}` }});
     }
 
     const request = base.pipe(
@@ -83,11 +85,11 @@ export class AuthenticationService {
   }
 
   public register(user: TokenPayload): Observable<any> {
-    return this.request('post', 'register', user);
+    return this.request('post', 'signup', user);
   }
 
   public login(user: TokenPayload): Observable<any> {
-    return this.request('post', 'login', user);
+    return this.request('post', 'signin', user);
   }
 
   public profile(): Observable<any> {

@@ -1,12 +1,11 @@
 <div class="container">
-
   <div class="row">
     <div class="col-md-6">
       <h1>Register</h1>
       <p class="lead">Already a member? Please <a routerLink="/login">log in</a> instead.</p>
       <form (submit)="onRegister()">
         <div class="form-group">
-          <label for="name">Full name</label>
+          <label for="name">Username</label>
           <input type="text" class="form-control" name="name" placeholder="Enter your name" [(ngModel)]="credentials.name">
         </div>
         <div class="form-group">
@@ -14,8 +13,16 @@
           <input type="email" class="form-control" name="email" placeholder="Enter email" [(ngModel)]="credentials.email">
         </div>
         <div class="form-group">
+          <label for="phone">Phone</label>
+          <input type="phone" class="form-control" name="phone" placeholder="Enter phone" [(ngModel)]="credentials.phone">
+        </div>
+        <div class="form-group">
           <label for="password">Password</label>
           <input type="password" class="form-control" name="password" placeholder="Password" [(ngModel)]="credentials.password">
+        </div>
+        <div class="form-group">
+          <label for="passwordConf">Confirm Password</label>
+          <input type="password" class="form-control" name="passwordConf" placeholder="Re-enter Password" [(ngModel)]="credentials.passwordConf">
         </div>
         <button type="submit" class="btn btn-default">Register!</button>
       </form>

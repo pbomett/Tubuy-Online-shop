@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
-var passport = require('passport');
-var LocalStrategy = require('passport-local').Strategy;
+//var passport = require('passport');
+//var LocalStrategy = require('passport-local').Strategy;
 //var User = mongoose.model('User');
 var jwt = require('express-jwt');
 
@@ -20,107 +20,9 @@ var ctrlAuth = require('./authentication');
 router.get('/profile', auth, ctrlProfile.profileRead);
 
 // authentication
-router.post('/register', ctrlAuth.register);
-router.post('/login', ctrlAuth.login);
+router.post('/signup', ctrlAuth.register);
 
-
-// // Register User
-// router.post('/signup', function (req, res) {
-// 		// Validation
-
-	
-// 	var username = req.body.username;
-// 	var email = req.body.email;
-// 	var password = req.body.password;
-// 	var phone = req.body.phone;
-
-	
-	
-// 		//checking for email and username are already taken
-// 		User.findOne({ username: { 
-// 			"$regex": "^" + username + "\\b", "$options": "i"
-// 	}}, function (err, user) {
-// 			User.findOne({ email: { 
-// 				"$regex": "^" + email + "\\b", "$options": "i"
-// 		}}, function (err, mail) {
-// 				if (user || mail) {
-// 					res.json("User already exists!");
-// 				}
-// 				else {
-// 					var newUser = new User({
-// 						phone: phone,
-// 						email: email,
-// 						username: username,
-// 						password: password
-// 					});
-// 					User.createUser(newUser, function (err, user) {
-// 						if (err) throw err;
-// 						//console.log(user);
-// 					});
-//          			res.json("You are registered and can now login");
-// 					res.redirect('/login');
-// 				}
-// 			});
-// 		});
-	
-// });
-
-// passport.use(new LocalStrategy(
-// 	function (username, password, done) {
-// 		User.getUserByUsername(username, function (err, user) {
-// 			if (err) throw err;
-// 			if (!user) {
-// 				return done(null, false, { message: 'Unknown User' });
-// 			}
-
-// 			User.comparePassword(password, user.password, function (err, isMatch) {
-// 				if (err) throw err;
-// 				if (isMatch) {
-// 					return done(null, user);
-// 				} else {
-// 					return done(null, false, { message: 'Invalid password' });
-// 				}
-// 			});
-// 		});
-// 	}));
-
-// passport.serializeUser(function (user, done) {
-// 	done(null, user.id);
-// });
-
-// passport.deserializeUser(function (id, done) {
-// 	User.getUserById(id, function (err, user) {
-// 		done(err, user);
-// 	});
-// });
-
-// router.post('/login',
-// 	passport.authenticate('local', { successRedirect: '/', failureRedirect: '/users/login', failureFlash: true }),
-// 	function (req, res) {
-// 		res.redirect('/');
-// 	});
-
-// router.get('/logout', function (req, res) {
-// 	req.logout();
-
-// 	req.flash('success_msg', 'You are logged out');
-
-// 	res.redirect('/users/login');
-// });
-
-// // Get Homepage
-// router.get('/', ensureAuthenticated, function(req, res){
-// 	res.render('index');
-// });
-
-// function ensureAuthenticated(req, res, next){
-// 	if(req.isAuthenticated()){
-// 		return next();
-// 	} else {
-// 		//req.flash('error_msg','You are not logged in');
-// 		res.redirect('/users/login');
-// 	}
-// }
+router.post('/signin', ctrlAuth.login);
 
 
 //------------------------------------------------------------

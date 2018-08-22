@@ -15,7 +15,8 @@ export class SignupComponent implements OnInit {
 
   credentials: TokenPayload = {
     email: '',
-    name: '',
+    username: '',
+    phone: '',
     password: ''
   };
 
@@ -30,6 +31,7 @@ export class SignupComponent implements OnInit {
 
   onRegister() {
     this.auth.register(this.credentials).subscribe(() => {
+      console.log('signup success!');
       this.router.navigateByUrl('/profile');
     }, (err) => {
       console.error(err);

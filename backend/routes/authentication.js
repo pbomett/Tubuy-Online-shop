@@ -1,13 +1,14 @@
 var passport = require('passport');
 var mongoose = require('mongoose');
 var User = mongoose.model('User');
-var User = require('../models/user');
+//var User = require('../models/user');
 
 module.exports.register = function(req, res) {
       var user = new User();
     
-      user.name = req.body.name;
+      user.username = req.body.username;
       user.email = req.body.email;
+      user.phone = req.body.phone;
     
       user.setPassword(req.body.password);
     

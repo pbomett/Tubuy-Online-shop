@@ -57,12 +57,12 @@ export class DataService {
     return(this.http.get(`${this.uri}/issues/delete/${id}`));
   }
 
-  signup(username, email, password, passwordConf){
+  signup(username, email, password, phone){
     const userdata = {
       username: username,
       email: email,
       password: password,
-      passwordConf: passwordConf
+      phone: phone
     }
 
     return(this.http.post(`${this.uri}/signup`, userdata));
@@ -76,7 +76,7 @@ export class DataService {
 
     console.log(userdata);
 
-    return(this.http.post(`${this.uri}/signup`, userdata));
+    return(this.http.post(`${this.uri}/signin`, userdata));
   }
   
 }
