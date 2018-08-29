@@ -3,6 +3,7 @@ import { AuthenticationService, UserDetails, TokenPayload } from '../authenitcat
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-login',
@@ -14,13 +15,14 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   loading = false;
   submitted = false;
-  returnUrl: string;
+  //returnUrl: string;
   error = '';
 
   constructor(
       private formBuilder: FormBuilder,
       private route: ActivatedRoute,
       private router: Router,
+      private snackbar: MatSnackBar,
       private authenticationService: AuthenticationService) {}
 
   ngOnInit() {
@@ -55,6 +57,9 @@ export class LoginComponent implements OnInit {
           .pipe(first())
           .subscribe(
               data => {
+                this.snackbar.open('Logged in successfully', 'OK', {
+                    duration: 3000,
+                  });
                   this.router.navigate(['/profile']);
               },
               error => {

@@ -1,32 +1,50 @@
 <div class="container">
-  <div class="row">
-    <div class="col-md-6">
+  <div class="header">
+    <div class="row">
       <h1>Register</h1>
       <p class="lead">Already a member? Please <a routerLink="/login">log in</a> instead.</p>
-      <form (submit)="onRegister()">
+    </div>
+  </div>
+    <div class="row">
+      <form (ngSubmit)="onRegister()" [formGroup]="signupForm">
         <div class="form-group">
           <label for="name">Username</label>
-          <input type="text" class="form-control" name="name" placeholder="Enter your name" [(ngModel)]="credentials.name">
+          <input type="text" class="form-control" formControlName="username" placeholder="Enter your name" [ngClass]="{ 'is-invalid': submitted && f.username.errors }">
+          <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+            <div *ngIf="f.username.errors.required">Username is required!</div>
+        </div>
         </div>
         <div class="form-group">
           <label for="email">Email address</label>
-          <input type="email" class="form-control" name="email" placeholder="Enter email" [(ngModel)]="credentials.email">
+          <input type="email" class="form-control" formControlName="email" placeholder="Enter email" [ngClass]="{ 'is-invalid': submitted && f.email.errors }">
+          <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+            <div *ngIf="f.email.errors.required">Email is required!</div>
+        </div>
         </div>
         <div class="form-group">
           <label for="phone">Phone</label>
-          <input type="phone" class="form-control" name="phone" placeholder="Enter phone" [(ngModel)]="credentials.phone">
+          <input type="phone" class="form-control" formControlName="phone" placeholder="Enter phone" [ngClass]="{ 'is-invalid': submitted && f.phone.errors }">
+          <div *ngIf="submitted && f.phone.errors" class="invalid-feedback">
+            <div *ngIf="f.phone.errors.required">Phone is required!</div>
+        </div>
         </div>
         <div class="form-group">
           <label for="password">Password</label>
-          <input type="password" class="form-control" name="password" placeholder="Password" [(ngModel)]="credentials.password">
+          <input type="password" class="form-control" formControlName="password" placeholder="Password" [ngClass]="{ 'is-invalid': submitted && f.password.errors }">
+          <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+            <div *ngIf="f.password.errors.required">Password is required!</div>
+        </div>
         </div>
         <div class="form-group">
           <label for="passwordConf">Confirm Password</label>
-          <input type="password" class="form-control" name="passwordConf" placeholder="Re-enter Password" [(ngModel)]="credentials.passwordConf">
+          <input type="password" class="form-control" formControlName="passwordConf" placeholder="Re-enter Password" [ngClass]="{ 'is-invalid': submitted && f.passwordConf.errors }">
+          <div *ngIf="submitted && f.passwordConf.errors" class="invalid-feedback">
+              <div *ngIf="(f.password !=='' && f.passwordConf !=='') && f.password !== f.passwordConf">Passwords do not match!</div>
+            <div *ngIf="f.password.errors.required">Password confirmation is required!</div>
+        </div>
         </div>
         <button type="submit" class="btn btn-default">Register!</button>
+        <a routerLink = "">Home</a>
       </form>
     </div>
-  </div>
-
 </div>

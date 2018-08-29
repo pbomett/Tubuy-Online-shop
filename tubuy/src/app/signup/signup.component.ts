@@ -13,6 +13,11 @@ import { AuthenticationService, TokenPayload } from '../authenitcation-service/a
 })
 export class SignupComponent implements OnInit {
 
+  signupForm: FormGroup;
+  loading = false;
+  submitted = false;
+  error = '';
+
   credentials: TokenPayload = {
     email: '',
     username: '',
@@ -20,19 +25,44 @@ export class SignupComponent implements OnInit {
     password: ''
   };
 
-  constructor(private auth: AuthenticationService, private router: Router) {
+  constructor(
+    private auth: AuthenticationService, 
+    private router: Router,
+    private formBuilder: FormBuilder
+  ) {
 
    }
   
   ngOnInit() {
+    this.signupForm = this.formBuilder.group({
+      username: ['', Validators.required],
+      password: ['', Validators.required],
+      email: ['', Validators.required],
+      phone: ['', Validators.required],
+      passwordConf: ['', Validators.required]
+  });
   }
 
   response: any;
 
+    // convenience getter for easy access to form fields
+    get f() { return this.signupForm.controls; }
+
+
   onRegister() {
-    this.auth.register(this.credentials).subscribe(() => {
+    this.submitted = true;
+
+    // stop here if form is invalid
+    if (this.signupForm.invalid) {
+        return;
+    }
+
+
+
+    this.loading = true;
+    this.auth.register(this.signupForm.value).subscribe(() => {
       console.log('signup success!');
-      this.router.navigateByUrl('/profile');
+      this.router.navigateByUrl('/login');
     }, (err) => {
       console.error(err);
     });
