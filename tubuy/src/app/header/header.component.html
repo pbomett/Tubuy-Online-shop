@@ -58,9 +58,9 @@
         <a mat-button class="search-button">Search</a>
       </div>
         <a *ngIf="!auth.isLoggedIn()" class= "header-link" routerLink="/login">Sign in</a>
-        <a *ngIf="auth.isLoggedIn()" class= "header-link" routerLink="/profile">{{ auth.getUserDetails()?.name }}</a>
+        <a *ngIf="auth.isLoggedIn()" class= "header-link" routerLink="/profile">{{ auth.getUserDetails()?.username }}</a>
         <a *ngIf="auth.isLoggedIn()" class= "header-link" (click)="auth.logout()">Logout</a>
-        <a class= "header-link" routerLink=".">Cart</a>
+        <a class= "header-link" (click)="onCart()" routerLink=".">Cart</a>
     </mat-toolbar-row>
   </mat-toolbar>
   </div>

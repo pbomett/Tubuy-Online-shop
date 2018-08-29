@@ -39,7 +39,7 @@ export class AuthenticationService {
     if (!this.token) {
       this.token = localStorage.getItem('mean-token');
     }
-    return this.token;
+        return this.token;
   }
 
   public getUserDetails(): UserDetails {
@@ -63,18 +63,19 @@ export class AuthenticationService {
     }
   }
 
-  private request(method: 'post'|'get', type: 'signin'|'signup'|'profile', user?: TokenPayload): Observable<any> {
+  private request(method: 'post'|'get', type: 'signin'|'signup'|'current', user?: TokenPayload): Observable<any> {
     let base;
 
     if (method === 'post') {
-      base = this.http.post(`${this.uri}${type}`, user);
+      base = this.http.post(`${this.uri}users/${type}`, user);
     } else {
-      base = this.http.get(`${this.uri}${type}`, { headers: { Authorization: `Bearer ${this.getToken()}` }});
+      base = this.http.get(`${this.uri}users/${type}`, { headers: { Authorization: `Bearer ${this.getToken()}` }});
     }
 
     const request = base.pipe(
       map((data: TokenResponse) => {
         if (data.token) {
+          //console.log(data.token);
           this.saveToken(data.token);
         }
         return data;
@@ -93,7 +94,7 @@ export class AuthenticationService {
   }
 
   public profile(): Observable<any> {
-    return this.request('get', 'profile');
+    return this.request('get', 'current');
   }
 
   public logout(): void {

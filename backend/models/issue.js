@@ -1,8 +1,8 @@
-import mongoose from 'mongoose';
+const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
 
-let Issue = new Schema({
+const schema = new Schema({
     title: {
         type: String
     },
@@ -21,4 +21,6 @@ let Issue = new Schema({
     }
 });
 
-export default mongoose.model('Issue', Issue);
+schema.set('toJSON', { virtuals: true });
+
+module.exports = mongoose.model('Issue', schema);

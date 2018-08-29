@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService, UserDetails } from '../authenitcation-service/authentication.service';
+import { first } from 'rxjs/operators';
 
 @Component({
   selector: 'app-profile',
@@ -8,13 +9,14 @@ import { AuthenticationService, UserDetails } from '../authenitcation-service/au
 })
 export class ProfileComponent implements OnInit {
 
-  details: UserDetails;
+  details: UserDetails[] = [];
 
   constructor(private auth: AuthenticationService) {}
 
   ngOnInit() {    
-    this.auth.profile().subscribe(user => {
+    this.auth.profile().pipe(first()).subscribe(user => {
       this.details = user;
+      console.log(this.details);
     }, (err) => {
       console.error(err);
     });

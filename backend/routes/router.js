@@ -1,32 +1,17 @@
 var express = require('express');
 var router = express.Router();
+const db = require('_helpers/db');
+const Item = db.Item;
+const Issue = db.Issue;
+
 //var passport = require('passport');
 //var LocalStrategy = require('passport-local').Strategy;
 //var User = mongoose.model('User');
-var jwt = require('express-jwt');
+//var jwt = require('express-jwt');
 
-import Item from '../models/item';
-import Issue from '../models/issue';
+//import Item from '../models/item';
+//import Issue from '../models/issue';
 
-var auth = jwt({
-  secret: 'MY_SECRET',
-  userProperty: 'payload'
-});
-
-var ctrlProfile = require('./profile');
-var ctrlAuth = require('./authentication');
-
-// profile
-router.get('/profile', auth, ctrlProfile.profileRead);
-
-// authentication
-router.post('/signup', ctrlAuth.register);
-
-router.post('/signin', ctrlAuth.login);
-
-
-//------------------------------------------------------------
-//------------------------------------------------------------
 
 //application services routes
 

@@ -1,8 +1,8 @@
-import mongoose from 'mongoose';
+const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
 
-let Item = new Schema({
+const schema = new Schema({
     imgUrl: {
         type: String
     },
@@ -17,4 +17,6 @@ let Item = new Schema({
     }
 });
 
-export default mongoose.model('Item', Item);
+schema.set('toJSON', { virtuals: true });
+
+module.exports = mongoose.model('Item', schema);

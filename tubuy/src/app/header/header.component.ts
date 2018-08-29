@@ -9,7 +9,13 @@ export class HeaderComponent implements OnInit {
 
   constructor(public auth: AuthenticationService) { }
 
+  username: string;
+
   ngOnInit() {
+    //console.log(this.auth.getUserDetails());
   }
 
+  onCart(){
+    
+  }
 }
