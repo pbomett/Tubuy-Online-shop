@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const schema = new Schema({
-    imgUrl: {
+    codename: {
         type: String
     },
     brand: {

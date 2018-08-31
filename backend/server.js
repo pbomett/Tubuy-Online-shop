@@ -13,15 +13,16 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cors());
 
+  // other routes
+  var routes = require('./routes/router');
+  app.use('/', routes);
+
 // use JWT auth to secure the api
 app.use(jwt());
 
 // api user routes
 app.use('/users', require('./users/users.controller'));
 
-  // other routes
-  var routes = require('./routes/router');
-  app.use('/', routes);
 
 // //use sessions for tracking logins
 // app.use(session({

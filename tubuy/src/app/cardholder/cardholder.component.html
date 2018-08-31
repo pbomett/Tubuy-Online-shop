@@ -8,9 +8,9 @@
       [colspan]="1"
       [rowspan]="2">
     
-      <a href=".">
+      <a (click)="viewItem(item._id)">
         <mat-card class="example-card">
-          <img mat-card-image src="{{item.imgUrl}}">
+          <img mat-card-image src="../../assets/{{item.codename}}/1.jpg">
           <mat-card-content>
         <ul>
           <li>{{(item.itemName.length>40)? (item.itemName | slice:0:40)+'...':(item.itemName)}}</li>

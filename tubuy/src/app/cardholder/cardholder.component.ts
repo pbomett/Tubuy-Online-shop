@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ItemModel } from '../item.model';
 import { DataService } from '../data-service/data.service';
+import { Router } from '@angular/router';
 import { fallIn } from '../router.animations';
 
 @Component({
@@ -15,7 +16,7 @@ export class CardholderComponent implements OnInit {
 
   items: ItemModel[];
 
-  constructor(private dataService: DataService) { }
+  constructor(private dataService: DataService, private router: Router) { }
 
   ngOnInit() {
     this.fetchItems();
@@ -27,6 +28,11 @@ export class CardholderComponent implements OnInit {
       // console.log('Data requested...');
       // console.log(this.items);
     });
+  }
+
+  viewItem(itemId: String){
+    //console.log(`/items/${itemId}`);
+    this.router.navigateByUrl(`/item/${itemId}`);
   }
 
 }

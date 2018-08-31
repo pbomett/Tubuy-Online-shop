@@ -7,6 +7,7 @@ import { CreateissueComponent } from './createissue/createissue.component';
 import { SignupComponent } from './signup/signup.component';
 import { LoginComponent } from './login/login.component';
 import { ProfileComponent } from './profile/profile.component';
+import { ItemDetailComponent } from './item-detail/item-detail.component';
 import { AuthguardService } from './auth-guard/authguard.service';
 
 const routes: Routes = [
@@ -16,6 +17,7 @@ const routes: Routes = [
   { path: 'edit/:id', component: EditissueComponent },
   { path: 'signup', component: SignupComponent },
   { path: 'login', component: LoginComponent },
+  { path: 'item/:id', component: ItemDetailComponent },
   { path: 'profile', component: ProfileComponent, canActivate: [AuthguardService] }
 ];
 

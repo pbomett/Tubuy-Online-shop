@@ -99,7 +99,6 @@ const Issue = db.Issue;
 							res.json(item);
 					})
 				  });
-			  
 	
 
 module.exports = router;
