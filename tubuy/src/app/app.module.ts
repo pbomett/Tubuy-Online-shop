@@ -32,14 +32,6 @@ import { LoginComponent } from './login/login.component';
 import { ProfileComponent } from './profile/profile.component';
 import { SearchComponent } from './search/search.component';
 
-export const firebaseConfig = {
-  apiKey: "AIzaSyC9CJuvmatRf3h3mJBc1X-YA7wIuVuHEeI",
-  authDomain: "tubuy-8ecba.firebaseapp.com",
-  databaseURL: "https://tubuy-8ecba.firebaseio.com",
-  projectId: "tubuy-8ecba",
-  storageBucket: "tubuy-8ecba.appspot.com",
-  messagingSenderId: "1055565933051"
-}
 
 @NgModule({
   declarations: [
