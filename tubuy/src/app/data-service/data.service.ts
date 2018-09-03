@@ -22,39 +22,43 @@ export class DataService {
     return this.http.get(`${this.uri}/items/${id}`);
   }
 
-
-  getIssues(){
-    return this.http.get(`${this.uri}/issues`);
+  getItemByName(name){
+    console.log(`${this.uri}/items/search/${name}`);
+    return this.http.get(`${this.uri}/items/search/${name}`);
   }
 
-  getIssueById(id){
-    return this.http.get(`${this.uri}/issues/${id}`);
-  }
 
-  addIssue(title, responsible, description, severity){
+  // getIssues(){
+  //   return this.http.get(`${this.uri}/issues`);
+  // }
+
+  // getIssueById(id){
+  //   return this.http.get(`${this.uri}/issues/${id}`);
+  // }
+
+  addItem(name, codename, price, moq){
     const issue = {
-      title: title,
-      responsible: responsible,
-      description: description,
-      severity: severity
+      name: name,
+      codename: codename,
+      description: price,
+      severity: moq
     }
-    return(this.http.post(`${this.uri}/issues/add`, issue));
+    return(this.http.post(`${this.uri}/items/add`, issue));
   }
 
-  updateIssue(id, title, responsible, description, severity, status){
-    const issue = {
-      title: title,
-      responsible: responsible,
-      description: description,
-      severity: severity,
-      status: status
+  updateItem(id, name, codename, price, moq){
+    const item = {
+      name: name,
+      codename: codename,
+      description: price,
+      severity: moq
     }
-    return(this.http.post(`${this.uri}/issues/update/${id}`, issue));
+    return(this.http.post(`${this.uri}/items/update/${id}`, item));
   }
 
-  deleteIssue(id){
+  deleteItem(id){
     
-    return(this.http.get(`${this.uri}/issues/delete/${id}`));
+    return(this.http.get(`${this.uri}/items/delete/${id}`));
   }
 
   signup(username, email, password, phone){

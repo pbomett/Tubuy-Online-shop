@@ -2,45 +2,54 @@ var express = require('express');
 var router = express.Router();
 const db = require('_helpers/db');
 const Item = db.Item;
-const Issue = db.Issue;
-
-//var passport = require('passport');
-//var LocalStrategy = require('passport-local').Strategy;
-//var User = mongoose.model('User');
-//var jwt = require('express-jwt');
-
-//import Item from '../models/item';
-//import Issue from '../models/issue';
 
 
 //application services routes
 
-    //fetch records
-    router.route('/issues').get((req, res ) => {
-        Issue.find((err, issues) => {
-            if(err)
-                console.log(err);
-            else 
-                res.json(issues);
-        });
-	  });
-	  
-	    //fetch record
-		router.route('/issues/:id').get((req, res) => {
-			Issue.findById(req.params.id, (err, issue) => {
-				if (err)
-					console.log(err);
-				else
-					res.json(issue);
-			})
-		  });
+				//   fetch items
+		  router.route('/items').get((req, res) => {
+		    Item.find((err, items) => {
+		        if (err)
+		            console.log(err);
+		        else
+		            res.json(items);
+		    });
+			});
+			
+
+		        //fetch item record
+				router.route('/items/:id').get((req, res) => {
+					Item.findById(req.params.id, (err, item) => {
+						if (err)
+							console.log(err);
+						else
+							res.json(item);
+					})
+					});
+					
+
+			// 	//fetch item by name
+			router.route('/items/search/:name')
+			.get(function(req, res) {
+				var name = req.params.name;
+				Item.findOne({ itemName: { 
+					"$regex": "^" + name + "\\b", "$options": "i"
+			}}, function(err, doc) {
+					if (err)
+						res.json(err)
+						else 
+						res.json(doc);
+							});
+					 }); 
+
+
 		  
 		  //add record
-		  router.route('/issues/add').post((req, res) => {
-			let issue = new Issue(req.body);
-			issue.save()
+		  router.route('/items/add').post((req, res) => {
+			let item = new Item(req.body);
+			item.save()
 				 .then(issue => {
-					 res.status(200).json({'issue': 'Added successfully'});
+					 res.status(200).json({'item': 'Added successfully'});
 				 })
 				 .catch(err => {
 					 res.status(400).send('Failed to create new record');
@@ -49,18 +58,17 @@ const Issue = db.Issue;
 		  
 		  
 		  //update record
-		  router.route('/issues/update/:id').post((req, res) => {
-			Issue.findById(req.params.id, (err, issue) => {
+		  router.route('/items/update/:id').post((req, res) => {
+			Item.findById(req.params.id, (err, item) => {
 				if(!issue)
 					return next(new Error('Could not load Document'));
 				else {
-					issue.title = req.body.title;
-					issue.responsible = req.body.responsible;
-					issue.description = req.body.description;
-					issue.severity = req.body.severity;
-					issue.status = req.body.status;
+					item.name = req.body.name;
+					item.codename = req.body.responsible;
+					item.price = req.body.price;
+					item.moq = req.body.moq;
 		  
-					issue.save().then(issue => {
+					item.save().then(issue => {
 						res.json('Update done');
 					}).catch(err => {
 						res.status(400).send('Update failed');
@@ -70,8 +78,8 @@ const Issue = db.Issue;
 		  });
 		  
 		  //delete record
-		  router.route('/issues/delete/:id').get((req, res) => {
-			Issue.findByIdAndRemove({_id: req.params.id}, (err, issue) =>{
+		  router.route('/item/delete/:id').get((req, res) => {
+			Item.findByIdAndRemove({_id: req.params.id}, (err, issue) =>{
 				if (err)
 					res.json(err);
 				else
@@ -79,26 +87,5 @@ const Issue = db.Issue;
 			});
 		  });
 		  
-		  
-		//   fetch items
-		  router.route('/items').get((req, res) => {
-		    Item.find((err, items) => {
-		        if (err)
-		            console.log(err);
-		        else
-		            res.json(items);
-		    });
-		  });
-
-		        //fetch record
-				router.route('/items/:id').get((req, res) => {
-					Item.findById(req.params.id, (err, item) => {
-						if (err)
-							console.log(err);
-						else
-							res.json(item);
-					})
-				  });
-	
 
 module.exports = router;

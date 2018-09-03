@@ -1,0 +1,25 @@
+<body>
+  <section >
+    <h1>Top Items</h1>
+  </section>
+    
+      <a *ngIf="this.item" (click)="viewItem(item._id)">
+        <mat-card class="example-card">
+          <img mat-card-image src="../../assets/{{item.codename}}/1.jpg">
+          <mat-card-content>
+        <ul>
+          <li>{{(item.itemName.length>40)? (item.itemName | slice:0:40)+'...':(item.itemName)}}</li>
+          <li>Ksh.{{item.price}}</li>
+          <li> {{item.moq}} items (MOQ)</li>
+        </ul>
+          </mat-card-content>
+          <mat-card-actions>
+          </mat-card-actions>
+        </mat-card>
+        </a>
+        <div *ngIf="!this.item" class="not-found">
+          <h1>Sorry, we couldn't find that item..</h1>
+          <a class="go-home" (click)="goHome()">Go back?</a>
+        </div>
+
+</body>

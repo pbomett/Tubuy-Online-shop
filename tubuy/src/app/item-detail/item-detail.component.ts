@@ -12,17 +12,26 @@ export class ItemDetailComponent implements OnInit {
   
   item: ItemModel;
   id: String;
-
+  default_image: number;
+  itemName; codename; price; moq;
 
   constructor(private dataService: DataService, private route: ActivatedRoute) { }
-  default_image=1;
+  
   ngOnInit() {
+    
     this.route.params.subscribe(params => {
       this.id = params['id'];
+  
     })
     this.dataService.getItemById(this.id).subscribe((data: ItemModel) => {
       this.item = data;
 
+      this.itemName = this.item.itemName;
+      this.codename = this.item.codename;
+      this.price = this.item.price;
+      this.moq = this.item.moq;
+
+      this.default_image = 1;
     });
   }
 
@@ -30,7 +39,7 @@ ImageExist(url)
 {
   
    var img = new Image();
-   img.src = `../../assets/${this.item.codename}/${url}.jpg`;;
+   img.src = `/assets/${this.codename}/${url}.jpg`;
    return img.height != 0;
 }
 

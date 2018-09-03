@@ -1,0 +1,28 @@
+<div class="container">
+  <br>
+  <mat-card>
+    <section class="mat-typography">
+        <h3>Update Item</h3>
+    </section>
+    <mat-divider></mat-divider>
+    <br>
+    <form [formGroup]="updateForm" class="edit-form">
+      <mat-form-field class="field-full-width">
+        <input matInput placeholder="Issue Title" formControlName="name" #name>
+      </mat-form-field>
+      <mat-form-field class="field-full-width">
+        <input matInput placeholder="Codename" formControlName="codename" #codename>
+      </mat-form-field>
+      <mat-form-field class="field-full-width">
+        <input matInput placeholder="Price" formControlName="price" #price>
+      </mat-form-field>
+      <mat-form-field class="field-full-width">
+        <input matInput placeholder="MOQ" formControlName="moq" #moq>
+      </mat-form-field>
+      <mat-divider></mat-divider>
+      <br><br>
+      <button mat-raised-button color="accent" routerLink="/list">Back</button>&nbsp;
+      <button type="submit" (click)="updateItem(name.value, codename.value, price.value, moq.value)" [disabled]="updateForm.pristine || updateForm.invalid" mat-raised-button color="primary">Save</button>
+    </form>
+  </mat-card>
+</div>

@@ -1,6 +1,6 @@
 export class ItemModel{
     codename?: string;
-    brand: string;
+    moq: number;
     itemName: string;
     price: number;
     features: string[];

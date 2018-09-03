@@ -1,25 +1,25 @@
 <div class="container">
           <div class=thumbnails>
-              <div *ngIf=ImageExist(1)><img (click)="switchImg(1)" src="../../assets/{{item.codename}}/1.jpg"></div>
-              <div *ngIf=ImageExist(2)><img (click)="switchImg(2)" src="../../assets/{{item.codename}}/2.jpg"></div>
-              <div *ngIf=ImageExist(3)><img (click)="switchImg(3)" src="../../assets/{{item.codename}}/3.jpg"></div>
-              <div *ngIf=ImageExist(4)><img (click)="switchImg(4)" src="../../assets/{{item.codename}}/4.jpg"></div>
+              <div *ngIf=ImageExist(1)><img (click)="switchImg(1)" src="../../assets/{{codename}}/1.jpg"></div>
+              <div *ngIf=ImageExist(2)><img (click)="switchImg(2)" src="../../assets/{{codename}}/2.jpg"></div>
+              <div *ngIf=ImageExist(3)><img (click)="switchImg(3)" src="../../assets/{{codename}}/3.jpg"></div>
+              <div *ngIf=ImageExist(4)><img (click)="switchImg(4)" src="../../assets/{{codename}}/4.jpg"></div>
           </div> 
-        <div *ngIf=ImageExist(1) class="defaultImg"><img src="../../assets/{{item.codename}}/{{default_image}}.jpg"></div>
+        <div *ngIf=ImageExist(1) class="defaultImg"><img src="../../assets/{{codename}}/{{default_image}}.jpg"></div>
     <div class="cell">
-      <h3 class="title">{{item.itemName}}</h3>
-      <h4 class="price">KES {{item.price}}</h4>
-      <p class="moq">MOQ: {{item.moq}}</p>
+      <h1 class="title">{{itemName}}</h1>
+      <h2 class="price">KES {{price}}</h2>
+      <p class="moq">MOQ: {{moq}}</p>
       <p class="description"></p>
       <div class="buy_choices">
         <i class="fas fa-shipping-fast"></i>
-        <label for="">Free shipping</label>
+        <label for="shipping_label"> Free shipping</label>
       </div>
       <div class="buy_choices">
           <i class="fas fa-hands-helping"></i>
-          <label for="">Pay on delivery</label>
+          <label for="delivery_label"> Pay on delivery</label>
         </div>
-      <button>Send Inquiry</button>
       <button>Start Order</button>
+      <button>Send Enquiry</button>
     </div>
 </div>

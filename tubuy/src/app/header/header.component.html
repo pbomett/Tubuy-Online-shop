@@ -53,10 +53,12 @@
 
         <span class = "logo" routerLink="">2buy</span>
         <span class="example-spacer"></span>
-        <input class="search-input">
-      <div>
-        <a mat-button class="search-button">Search</a>
-      </div>
+        
+          <input [(ngModel)]="searchInput" class="search-input">
+          <div>
+            <a mat-button class="search-button" (click)="searchItem()">Search</a>
+          </div>
+        
         <a *ngIf="!auth.isLoggedIn()" class= "header-link" routerLink="/login">Sign in</a>
         <a *ngIf="auth.isLoggedIn()" class= "header-link" routerLink="/profile">{{ auth.getUserDetails()?.username }}</a>
         <a *ngIf="auth.isLoggedIn()" class= "header-link" (click)="auth.logout()">Logout</a>

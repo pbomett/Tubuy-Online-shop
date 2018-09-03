@@ -12,7 +12,9 @@ function jwt() {
             '/users/signin',
             '/users/signup',
             '/items',
-            '/items/'
+            '/items/',
+            '/items/search/'
+
         ]
     });
 }

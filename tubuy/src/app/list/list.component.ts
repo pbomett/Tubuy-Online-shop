@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Issue } from '../issue.model';
+import { ItemModel } from '../item.model';
 import { DataService } from '../data-service/data.service';
 
 import { Router } from '@angular/router';
@@ -11,31 +11,31 @@ import { Router } from '@angular/router';
 })
 export class ListComponent implements OnInit {
 
-  issues: Issue[];
-  displayedColumns = ['title', 'responsible', 'severity', 'status', 'actions'];
+  items: ItemModel[];
+  displayedColumns = ['name', 'codename', 'price', 'moq', 'actions'];
 
   constructor(private dataService: DataService, private router: Router) { }
 
   ngOnInit() {
-    this.fetchIssues();
+    this.fetchItems();
   }
 
-  fetchIssues(){
-    this.dataService.getIssues().subscribe((data: Issue[]) => {
-      this.issues = data;
+  fetchItems(){
+    this.dataService.getItems().subscribe((data: ItemModel[]) => {
+      this.items = data;
       console.log('Data requested...');
-      console.log(this.issues);
+      console.log(this.items);
     });
   }
 
-  editIssue(id){
+  editItem(id){
     //console.log(id);
     this.router.navigate([`/edit/${id}`]);
   }
 
-  deleteIssue(id){
-    this.dataService.deleteIssue(id).subscribe(() =>{
-      this.fetchIssues();
+  deleteItem(id){
+    this.dataService.deleteItem(id).subscribe(() =>{
+      this.fetchItems();
     });
   }
 

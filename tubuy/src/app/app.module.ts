@@ -24,12 +24,13 @@ import { DataService } from './data-service/data.service';
 import { AuthenticationService } from './authenitcation-service/authentication.service';
 import { AuthguardService } from './auth-guard/authguard.service';
 import { ListComponent } from './list/list.component';
-import { CreateissueComponent } from './createissue/createissue.component';
-import { EditissueComponent } from './editissue/editissue.component';
+import { CreateItemComponent } from './createitem/createitem.component';
+import { EditItemComponent } from './edititem/edititem.component';
 import { SlideComponent } from './slide/slide.component';
 import { SignupComponent } from './signup/signup.component';
 import { LoginComponent } from './login/login.component';
 import { ProfileComponent } from './profile/profile.component';
+import { SearchComponent } from './search/search.component';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyC9CJuvmatRf3h3mJBc1X-YA7wIuVuHEeI",
@@ -49,12 +50,13 @@ export const firebaseConfig = {
     FooterComponent,
     CardholderComponent,
     ListComponent,
-    CreateissueComponent,
-    EditissueComponent,
+    CreateItemComponent,
+    EditItemComponent,
     SlideComponent,
     SignupComponent,
     LoginComponent,
-    ProfileComponent
+    ProfileComponent,
+    SearchComponent
   ],
   imports: [
     BrowserModule,

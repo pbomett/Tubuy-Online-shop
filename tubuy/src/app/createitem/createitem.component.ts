@@ -5,25 +5,25 @@ import { Router } from '@angular/router';
 import { DataService } from '../data-service/data.service';
 
 @Component({
-  selector: 'app-createissue',
-  templateUrl: './createissue.component.html',
-  styleUrls: ['./createissue.component.scss']
+  selector: 'app-createitem',
+  templateUrl: './createitem.component.html',
+  styleUrls: ['./createitem.component.scss']
 })
-export class CreateissueComponent implements OnInit {
+export class CreateItemComponent implements OnInit {
 
   createForm: FormGroup;
 
   constructor(private dataService: DataService, private fb: FormBuilder, private router: Router) { 
     this.createForm = this.fb.group({
-      title: ['', Validators.required],
-      responsible: '',
-      description: '',
-      severity: ''
+      name: ['', Validators.required],
+      codename: '',
+      price: '',
+      moq: ''
     });
   }
 
-  addIssue(title, responsible, description, severity) {
-    this.dataService.addIssue(title, responsible, description, severity).subscribe(() => {
+  addItem(name, codename, price, moq) {
+    this.dataService.addItem(name, codename, price, moq).subscribe(() => {
       this.router.navigate(['/list']);
     });
   }
