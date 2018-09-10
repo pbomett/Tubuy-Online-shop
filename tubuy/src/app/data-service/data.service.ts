@@ -38,20 +38,20 @@ export class DataService {
 
   addItem(name, codename, price, moq){
     const issue = {
-      name: name,
+      itemName: name,
       codename: codename,
-      description: price,
-      severity: moq
+      price: price,
+      moq: moq
     }
     return(this.http.post(`${this.uri}/items/add`, issue));
   }
 
   updateItem(id, name, codename, price, moq){
     const item = {
-      name: name,
+      itemName: name,
       codename: codename,
-      description: price,
-      severity: moq
+      price: price,
+      moq: moq
     }
     return(this.http.post(`${this.uri}/items/update/${id}`, item));
   }

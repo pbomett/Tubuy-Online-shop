@@ -48,7 +48,7 @@ const Item = db.Item;
 		  router.route('/items/add').post((req, res) => {
 			let item = new Item(req.body);
 			item.save()
-				 .then(issue => {
+				 .then(item => {
 					 res.status(200).json({'item': 'Added successfully'});
 				 })
 				 .catch(err => {
@@ -60,15 +60,15 @@ const Item = db.Item;
 		  //update record
 		  router.route('/items/update/:id').post((req, res) => {
 			Item.findById(req.params.id, (err, item) => {
-				if(!issue)
+				if(!item)
 					return next(new Error('Could not load Document'));
 				else {
-					item.name = req.body.name;
-					item.codename = req.body.responsible;
+					item.itemName = req.body.itemName;
+					item.codename = req.body.codename;
 					item.price = req.body.price;
 					item.moq = req.body.moq;
 		  
-					item.save().then(issue => {
+					item.save().then(item => {
 						res.json('Update done');
 					}).catch(err => {
 						res.status(400).send('Update failed');
@@ -79,7 +79,7 @@ const Item = db.Item;
 		  
 		  //delete record
 		  router.route('/item/delete/:id').get((req, res) => {
-			Item.findByIdAndRemove({_id: req.params.id}, (err, issue) =>{
+			Item.findByIdAndRemove({_id: req.params.id}, (err, item) =>{
 				if (err)
 					res.json(err);
 				else

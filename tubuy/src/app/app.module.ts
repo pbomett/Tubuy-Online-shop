@@ -31,6 +31,8 @@ import { SignupComponent } from './signup/signup.component';
 import { LoginComponent } from './login/login.component';
 import { ProfileComponent } from './profile/profile.component';
 import { SearchComponent } from './search/search.component';
+import { CardComponent } from './card/card.component';
+import { CartComponent } from './cart/cart.component';
 
 
 @NgModule({
@@ -48,7 +50,9 @@ import { SearchComponent } from './search/search.component';
     SignupComponent,
     LoginComponent,
     ProfileComponent,
-    SearchComponent
+    SearchComponent,
+    CardComponent,
+    CartComponent
   ],
   imports: [
     BrowserModule,

@@ -6,8 +6,8 @@ const schema = new Schema({
     codename: {
         type: String
     },
-    brand: {
-        type: String 
+    moq: {
+        type: Number 
     },
     itemName:{
         type: String

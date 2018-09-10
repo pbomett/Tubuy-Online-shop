@@ -17,15 +17,25 @@ export class HeaderComponent implements OnInit {
 
   username: string;
   item: ItemModel;
-  searchInput: string;
+  searchInput: any;
+  searchbox: any;
 
   ngOnInit() {
     //console.log(this.auth.getUserDetails());
   }
 
-  searchItem(){
-    //console.log(this.searchInput);
+  searchItem(data){
+    this.searchbox =="";
+    this.searchInput = data;
+    
+    if(this.searchInput==""){
+
+    }
+    else{
+      //console.log(this.searchInput);
     this.router.navigateByUrl(`/search/${this.searchInput}`);
+    }
+    
   }
 
   onCart(){

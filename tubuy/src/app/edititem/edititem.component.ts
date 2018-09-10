@@ -29,7 +29,7 @@ export class EditItemComponent implements OnInit {
         this.id = params.id;
       this.dataService.getItemById(this.id).subscribe(res => {
         this.item = res;
-        this.updateForm.get('name').setValue(this.item.name);
+        this.updateForm.get('name').setValue(this.item.itemName);
         this.updateForm.get('codename').setValue(this.item.codename);
         this.updateForm.get('price').setValue(this.item.price);
         this.updateForm.get('moq').setValue(this.item.moq);

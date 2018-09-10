@@ -13,7 +13,7 @@ import { SearchComponent} from './search/search.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
-  { path: 'list', component: ListComponent },
+  { path: 'list', component: ListComponent, canActivate: [AuthguardService] },
   { path: 'create', component: CreateItemComponent },
   { path: 'edit/:id', component: EditItemComponent },
   { path: 'signup', component: SignupComponent },

@@ -54,15 +54,15 @@
         <span class = "logo" routerLink="">2buy</span>
         <span class="example-spacer"></span>
         
-          <input [(ngModel)]="searchInput" class="search-input">
+          <input [(ngModel)]="searchInput" class="search-input" [(ngModel)]="searchbox" [value]=searchInput>
           <div>
-            <a mat-button class="search-button" (click)="searchItem()">Search</a>
+            <a mat-button class="search-button" (click)="searchItem(searchInput)">Search</a>
           </div>
         
         <a *ngIf="!auth.isLoggedIn()" class= "header-link" routerLink="/login">Sign in</a>
         <a *ngIf="auth.isLoggedIn()" class= "header-link" routerLink="/profile">{{ auth.getUserDetails()?.username }}</a>
         <a *ngIf="auth.isLoggedIn()" class= "header-link" (click)="auth.logout()">Logout</a>
-        <a class= "header-link" (click)="onCart()" routerLink=".">Cart</a>
+        <a matBadge="4" matBadgeOverlap="false" class= "cart-button" (click)="onCart()" routerLink=".">Cart</a>
     </mat-toolbar-row>
   </mat-toolbar>
   </div>
